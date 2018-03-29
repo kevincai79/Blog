@@ -27,7 +27,11 @@ class PostNew extends Component {
             name="title"
             component={this.renderField}
           />
-          <Field label="Tags" name="tags" component={this.renderField} />
+          <Field
+            label="Categories"
+            name="categories"
+            component={this.renderField}
+          />
           <Field
             label="Post Content"
             name="content"
@@ -39,6 +43,28 @@ class PostNew extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  // Validate the inputs from 'values'
+  if (!values.title || values.title.length < 3) {
+    errors.title = 'Enter a title with at least 3 characters!';
+  }
+
+  if (!values.categories) {
+    errors.categories = 'Enter a category!';
+  }
+
+  if (!values.content || values.content.length < 10) {
+    errors.content = 'Enter a post at least with 10 characters!';
+  }
+
+  // If errors is empty, the form is fine to submit
+  // If errors has *any* properties, redux form assumes form is invalid
+  return errors;
+}
+
 export default reduxForm({
+  validate,
   form: 'PostNewForm'
 })(PostNew);
