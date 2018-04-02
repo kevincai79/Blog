@@ -12,8 +12,6 @@ class PostNew extends Component {
       touched && error ? 'has-danger' : '' // field.meta.touched && field.meta.error ? 'has-danger' : ''
     }`;
 
-    //
-
     return (
       <div className={className}>
         <label>{field.label}</label>
@@ -24,7 +22,7 @@ class PostNew extends Component {
   }
 
   onSubmit(values) {
-    console.log(values);
+    // console.log(this);
     this.props.createPost(values);
   }
 
@@ -33,7 +31,7 @@ class PostNew extends Component {
 
     return (
       <div>
-        <form onSubmit={handleSubmit(this.onSubmit).bind(this)}>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Title of Post"
             name="title"
