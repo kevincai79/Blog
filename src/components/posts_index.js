@@ -6,6 +6,12 @@ import { Link } from 'react-router-dom';
 import { fetchPosts } from '../actions';
 
 class PostsIndex extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { term: 'Show Local Weather' };
+  }
+
   componentDidMount() {
     this.props.fetchPosts();
   }
@@ -22,9 +28,18 @@ class PostsIndex extends Component {
     });
   }
 
+  handleClick(event) {
+    event.preventDefault();
+    console.log(this);
+  }
+
   render() {
     return (
       <div>
+        <button className="weather-btn" onClick={this.handleClick.bind(this)}>
+          {this.state.term}
+        </button>
+
         <div className="text-xs-right">
           <Link className="btn btn-primary" to="/posts/new">
             Add a New Post

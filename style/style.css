@@ -1,3 +1,9 @@
 form a {
   margin-left: 5px;
 }
+
+.weather-btn {
+  background-color: orange;
+  color: white;
+  margin-top: 5px;
+}
