@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "react and redux environment setup",
   "main": "index.js",
+  "engines": {
+    "node": "8.9.1",
+    "npm": "5.5.1"
+  },
   "scripts": {
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "postinstall": "webpack -p",
     "start": "node server.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test":
+      "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
   "author": "",
