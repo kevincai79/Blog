@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-import { fetchPosts } from '../actions';
+import { fetchPosts, fetchWeather, fetchLocation } from '../actions';
 
 class PostsIndex extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class PostsIndex extends Component {
 
   componentDidMount() {
     this.props.fetchPosts();
+    this.props.fetchLocation();
   }
 
   renderPosts() {
@@ -29,8 +31,8 @@ class PostsIndex extends Component {
   }
 
   handleClick(event) {
-    event.preventDefault();
-    console.log(this);
+    const { lat, lon } = this.props.location;
+    console.log(lon);
   }
 
   render() {
@@ -53,7 +55,12 @@ class PostsIndex extends Component {
 }
 
 function mapStateToProps(state) {
-  return { posts: state.posts };
+  return {
+    posts: state.posts,
+    location: state.location
+  };
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
+export default connect(mapStateToProps, { fetchPosts, fetchLocation })(
+  PostsIndex
+);

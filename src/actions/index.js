@@ -4,9 +4,11 @@ export const FETCH_POSTS = 'fetch_posts';
 export const CREATE_POST = 'create_post';
 export const FETCH_POST = 'fetch_post';
 export const DELETE_POST = 'delete_post';
+export const FETCH_LOCATION = 'fetch_location';
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
 const API_KEY = '?key=sichuan';
+const API_KEY_WEATHER = '1bf0d1a9cf3923f5356def8cc562ad66';
 
 export function fetchPosts() {
   const request = axios.get(`${ROOT_URL}/posts${API_KEY}`);
@@ -47,3 +49,20 @@ export function deletePost(id, callback) {
     payload: id
   };
 }
+
+export function fetchLocation() {
+  const request = axios.get('https://ipapi.co/json/');
+
+  console.log(request);
+
+  return {
+    type: FETCH_LOCATION,
+    payload: request
+  };
+}
+
+// export function fetchWeather() {
+//   const coords = axios.get('https://ipapi.co/json/').then(data => {
+//     return { lat: data.data.latitude, lon: data.data.longitude };
+//   });
+// }
