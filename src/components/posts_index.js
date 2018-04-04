@@ -7,12 +7,6 @@ import axios from 'axios';
 import { fetchPosts, fetchWeather, fetchLocation } from '../actions';
 
 class PostsIndex extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { term: 'Show Local Weather' };
-  }
-
   componentDidMount() {
     this.props.fetchPosts();
     this.props.fetchLocation();
