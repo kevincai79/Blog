@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-import { fetchPosts } from '../actions';
+import { fetchPosts, fetchWeather, fetchLocation } from '../actions';
 
 class PostsIndex extends Component {
   componentDidMount() {
     this.props.fetchPosts();
+    this.props.fetchLocation();
   }
 
   renderPosts() {
@@ -22,9 +24,18 @@ class PostsIndex extends Component {
     });
   }
 
+  handleClick(event) {
+    const { lat, lon } = this.props.location;
+    this.props.fetchWeather(lat, lon);
+  }
+
   render() {
     return (
       <div>
+        <button className="weather-btn" onClick={this.handleClick.bind(this)}>
+          {this.props.weather}
+        </button>
+
         <div className="text-xs-right">
           <Link className="btn btn-primary" to="/posts/new">
             Add a New Post
@@ -38,7 +49,15 @@ class PostsIndex extends Component {
 }
 
 function mapStateToProps(state) {
-  return { posts: state.posts };
+  return {
+    posts: state.posts,
+    location: state.location,
+    weather: state.weather
+  };
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
+export default connect(mapStateToProps, {
+  fetchPosts,
+  fetchLocation,
+  fetchWeather
+})(PostsIndex);
