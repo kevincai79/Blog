@@ -32,14 +32,14 @@ class PostsIndex extends Component {
 
   handleClick(event) {
     const { lat, lon } = this.props.location;
-    console.log(lon);
+    this.props.fetchWeather(lat, lon);
   }
 
   render() {
     return (
       <div>
         <button className="weather-btn" onClick={this.handleClick.bind(this)}>
-          {this.state.term}
+          {this.props.weather}
         </button>
 
         <div className="text-xs-right">
@@ -57,10 +57,13 @@ class PostsIndex extends Component {
 function mapStateToProps(state) {
   return {
     posts: state.posts,
-    location: state.location
+    location: state.location,
+    weather: state.weather
   };
 }
 
-export default connect(mapStateToProps, { fetchPosts, fetchLocation })(
-  PostsIndex
-);
+export default connect(mapStateToProps, {
+  fetchPosts,
+  fetchLocation,
+  fetchWeather
+})(PostsIndex);
