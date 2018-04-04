@@ -7,9 +7,9 @@ export const DELETE_POST = 'delete_post';
 export const FETCH_LOCATION = 'fetch_location';
 export const FETCH_WEATHER = 'fetch_weather';
 
-const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
+const ROOT_URL = 'https://reduxblog.herokuapp.com/api';
 const API_KEY = '?key=sichuan';
-const ROOT_URL_WEATHER = 'http://api.openweathermap.org/data/2.5/weather';
+const ROOT_URL_WEATHER = 'https://api.openweathermap.org/data/2.5/weather';
 const API_KEY_WEATHER = '1bf0d1a9cf3923f5356def8cc562ad66';
 
 export function fetchPosts() {
