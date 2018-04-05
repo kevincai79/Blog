@@ -63,7 +63,7 @@ export function fetchLocation() {
 
 export function fetchWeather(lat, lon) {
   const request = axios.get(
-    `${ROOT_URL_WEATHER}?lat=${lat}&lon=${lon}&appid=${API_KEY_WEATHER}`
+    `${ROOT_URL_WEATHER}?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY_WEATHER}`
   );
 
   return {
