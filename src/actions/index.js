@@ -52,14 +52,14 @@ export function deletePost(id, callback) {
   };
 }
 
-export function fetchLocation() {
-  const request = axios.get('https://ipapi.co/json/');
-
-  return {
-    type: FETCH_LOCATION,
-    payload: request
-  };
-}
+// export function fetchLocation() {
+//   const request = axios.get('https://ipapi.co/json/');
+//
+//   return {
+//     type: FETCH_LOCATION,
+//     payload: request
+//   };
+// }
 
 export function fetchWeather(lat, lon) {
   const request = axios.get(
