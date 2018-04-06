@@ -53,7 +53,7 @@ class PostsIndex extends Component {
   render() {
     return (
       <div>
-        <button className="weather-btn" onClick={this.handleClick}>
+        <button className="btn weather-btn" onClick={this.handleClick}>
           {this.props.weather}
         </button>
 
