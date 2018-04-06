@@ -7,31 +7,14 @@ import axios from 'axios';
 import { fetchPosts, fetchWeather, fetchLocation } from '../actions';
 
 class PostsIndex extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { coordinates: { lat: '', lon: '' } };
-
-    this.handleClick = this.handleClick.bind(this);
-    this.getLocalWeather = this.getLocalWeather.bind(this);
-  }
-
   componentDidMount() {
     this.props.fetchPosts();
     this.getLocalWeather();
+
+    // update the weather every hour
+    setInterval(() => this.getLocalWeather(), 1000 * 60 * 60);
+
     // this.props.fetchLocation();
-  }
-
-  getLocalWeather() {
-    navigator.geolocation.getCurrentPosition(position => {
-      let lat = position.coords.latitude;
-      let lon = position.coords.longitude;
-      this.setState({
-        coordinates: { lat, lon }
-      });
-
-      this.props.fetchWeather(lat, lon);
-    });
   }
 
   renderPosts() {
@@ -46,6 +29,15 @@ class PostsIndex extends Component {
     });
   }
 
+  getLocalWeather() {
+    navigator.geolocation.getCurrentPosition(position => {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+
+      this.props.fetchWeather(lat, lon);
+    });
+  }
+
   handleClick(event) {
     this.getLocalWeather();
   }
@@ -53,7 +45,10 @@ class PostsIndex extends Component {
   render() {
     return (
       <div>
-        <button className="btn weather-btn" onClick={this.handleClick}>
+        <button
+          className="btn weather-btn"
+          onClick={this.handleClick.bind(this)}
+        >
           {this.props.weather}
         </button>
 
