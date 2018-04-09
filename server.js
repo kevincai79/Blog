@@ -5,8 +5,8 @@ const app = express();
 
 app.use(express.static(__dirname));
 
-app.get('/hellosign', (req, res) => {
-  res.send(200);
+app.post('/hellosign', (req, res) => {
+  res.send('hello');
 });
 
 app.get('*', (req, res) => {
